@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Replace.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msakata <msakata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/10 03:57:14 by msakata           #+#    #+#             */
-/*   Updated: 2025/08/10 21:41:28 by msakata          ###   ########.fr       */
+/*   Created: 2025/08/11 03:50:34 by msakata           #+#    #+#             */
+/*   Updated: 2025/08/11 03:56:24 by msakata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef REPLACE_HPP
+# define REPLACE_HPP
 
-HumanA::HumanA(const std::string &name, Weapon &weapon)
-	: name(name), weapon(weapon)
-{}
+#include <string>
 
-void HumanA::attack() const
+class Replace
 {
-	std::cout << name << " attacks with their ";
-	std::cout << weapon.getType() << std::endl;
-}
+	private:
+		std::string filename;
+		std::string s1;
+		std::string s2;
+		
+		std::string readFile();
+		std::string replacAll(const std::string &content);
+		bool writeFile(const std::string &content);
+
+	public:
+		Replace(const std::string &filename, const std::string &s1, const std::string &s2);
+		bool process();
+};
+
+#endif

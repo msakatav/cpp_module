@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: msakata <msakata@student.42tokyo.jp>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/07/31 01:10:00 by msakata           #+#    #+#              #
-#    Updated: 2025/08/10 21:58:11 by msakata          ###   ########.fr        #
+#    Created: 2025/08/10 22:38:01 by msakata           #+#    #+#              #
+#    Updated: 2025/08/11 03:50:06 by msakata          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = weapon
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+NAME = sed
+SRCS = main.cpp Replace.cpp
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-OBJS = $(SRC:.cpp=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
@@ -23,13 +23,13 @@ $(NAME): $(OBJS)
 	
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
+	
 clean:
 	rm -f $(OBJS)
-
+	
 fclean: clean
 	rm -f $(NAME)
-
+	
 re: fclean all
 
 .PHONY: all clean fclean re
