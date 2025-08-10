@@ -6,13 +6,12 @@
 /*   By: msakata <msakata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 03:50:29 by msakata           #+#    #+#             */
-/*   Updated: 2025/08/11 04:31:07 by msakata          ###   ########.fr       */
+/*   Updated: 2025/08/11 06:03:37 by msakata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <fstream>
-#include <iterator>
 #include "Replace.hpp"
 
 Replace::Replace(const std::string &filename, const std::string &s1, const std::string &s2)
@@ -34,12 +33,10 @@ std::string Replace::readFile()
 	std::ifstream in_file(filename.c_str());
 	if (!in_file)
 		return "";
-	// std::stringのコンストラクタを呼びだしている。
-	return std::string
-	(
-		std::istreambuf_iterator<char>(in_file), 
-		std::istreambuf_iterator<char>()
-	);
+	char ch;
+	while (in_file.get(ch))
+		content += ch;
+	return content;
 }
 
 std::string Replace::replacAll(const std::string &content)
