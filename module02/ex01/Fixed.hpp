@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msakata <msakata@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 06:07:58 by msakata           #+#    #+#             */
-/*   Updated: 2025/08/15 23:35:08 by msakata          ###   ########.fr       */
+/*   Created: 2025/08/13 23:09:36 by msakata           #+#    #+#             */
+/*   Updated: 2025/08/15 22:02:26 by msakata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,28 @@ class Fixed
 {
 	private:
 		int _fixed_point_value;
-		// なぜ、static
-		// static を付けると、クラスの全オブジェクトが同じメモリ上の1つの値を共有します。
-		// const なので変更不可（定数）。
 		static const int _fractional_bits = 8;
-		
+
 	public:
-		// ディフォルトコンストラクタ
 		Fixed();
-		// コピーコンストラクタとは？
-		// 新しいインスタンスを、既存のインスタンスを使って作るときに呼ばれる
-		// 明示的に設定している。
 		Fixed(const Fixed &other);
-		// コピー代入演算子とは？
-		// すでにあるインスタンスに、別のインスタンスの値を代入するときに呼ばれる
 		Fixed &operator=(const Fixed &other);
-		// デストラクタ
 		~Fixed();
-		// getter
-		int getRawBits(void) const;
-		// setter
+		
+		// 新しいコンストラクタ
+		Fixed(const int value);
+		Fixed(const float value);
+		
+		float toFloat() const;
+		int toInt() const;
+
+		int getRawBits() const;
 		void setRawBits(int const raw);
 };
+
+// 出力演算子オーバーロード?
+// ostream とは？
+// std::ostream は 出力ストリーム（Output Stream） のクラスです。
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
